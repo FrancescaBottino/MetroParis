@@ -19,7 +19,11 @@ public class ProvaGrafo {
 		grafo.addEdge("UNO", "DUE");
 		
 		System.out.println(grafo); // + [{UNO,DUE}]) non orientato
+
+	
+		
 		
 	}
+
 
 }
