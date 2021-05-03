@@ -133,7 +133,7 @@ public class Model {
 					//Chiamato ogni volta che algoritmo attraversa un nuovo arco 
 					//e: parametro passato dal metodo per descrivere cosa è successo, un evento (ho attraversato arco)
 					
-					
+					/*
 					DefaultEdge arco = e.getEdge();
 					Fermata a=grafo.getEdgeSource(arco);
 					Fermata b=grafo.getEdgeTarget(arco);
@@ -148,7 +148,7 @@ public class Model {
 						predecessore.put(b, a);
 						//System.out.println(b+" scoperto da "+a);
 					}
-					
+					*/
 					
 				}
 
@@ -220,9 +220,35 @@ public class Model {
 				
 			}
 			
-			return cammino; //in orine inverso con solo add, in ordine giusto con add(indice, elemento)
+			return cammino; //in ordine inverso con solo add, in ordine giusto con add(indice, elemento)
 			
 		}
+		
+		// Implementazione di 'trovaCammino' che NON usa il traversal listener ma sfrutta
+		// il metodo getParent presente in BreadthFirstIterator
+		
+		
+		public List<Fermata> trovaCammino2(Fermata partenza, Fermata arrivo) {
+			BreadthFirstIterator<Fermata, DefaultEdge> bfv = 
+					new BreadthFirstIterator<Fermata, DefaultEdge>(this.grafo, partenza) ;
+
+			// fai lavorare l'iteratore per trovare tutti i vertici
+			while(bfv.hasNext())
+				bfv.next() ; // non mi serve il valore
+
+			List<Fermata> cammino = new LinkedList<>() ;
+			Fermata f = arrivo ;
+			while(f!=null) {
+				cammino.add(f) ;
+				f = bfv.getParent(f) ;
+			}
+
+			return cammino ;
+
+		}
+
+		
+		
 	
 
 }

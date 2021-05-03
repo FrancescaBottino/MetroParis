@@ -21,7 +21,8 @@ public class TestModel {
 		}
 		
 		Fermata a= m.trovaFermata("Temple");
-		List<Fermata> percorso= m.trovaCammino(p, a);
+		List<Fermata> percorso= m.trovaCammino2(p, a);
+		//trovaCammino
 		System.out.println(percorso);
 		
 		
